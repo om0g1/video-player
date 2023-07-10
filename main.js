@@ -1,0 +1,1 @@
+const skip = document.getElementById("ski")
