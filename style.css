@@ -51,7 +51,7 @@ video{
     gap: var(--small-gap);
     padding: var(--small-gap);
     padding-bottom: calc(var(--medium-gap) * 0.9);
-    background-color: transparent;
+    background-color: var(--theme-white);
 }
 
 #controls> div{
@@ -160,5 +160,6 @@ video{
     #controls{
         position: relative;
         min-height: 10%;
+        background-color: transparent;
     }
 }
