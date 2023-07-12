@@ -172,5 +172,5 @@ volumeWrapper.onmousedown  = e => {
     const rect = e.target.getBoundingClientRect();
     let volumePercentage = Math.round((e.clientX - rect.right));
     volumeSlider.style.left = volumePercentage +"px";
-    video.volume = 1 + (volumePercentage * 0.01);
+    video.volume = 1 - (volumePercentage * -0.01);
 }
