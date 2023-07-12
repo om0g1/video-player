@@ -6,6 +6,7 @@
     --theme-grey: rgb(125, 125, 125);
     --secondary-grey: rgb(93, 93, 93);
     --tertiary-grey: rgb(62, 62, 62);
+    --theme-blue: #00a4eb;
 }
 
 *{
@@ -18,13 +19,103 @@ ul{
     list-style: none;
 }
 
+button,
+input[type="file"]{
+    cursor: pointer;
+}
+
+button:hover,
+input[type="file"]:hover{
+    color: var(--theme-blue);
+    fill: var(--theme-blue);
+}
+
+.input-file{
+    position: relative;
+}
+
+.input-file *{
+    width: 100%;
+}
+
+.input-file input{
+    position: absolute;
+    opacity: 0;
+    left: 0;
+}
+
+html{
+    overflow: hidden;
+}
+
 body{
     position: relative;
-    height: 100vh;
+    height: 100lvh;
     overflow: hidden;
     display: flex;
     flex-direction: column;
     align-items: center;
+    min-width: 375px;
+}
+
+#menu{
+    width: 100%;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    padding: var(--small-gap);
+}
+
+#menu> ul{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: var(--small-gap);
+}
+
+#menu> ul li button{
+    border: none;
+    background-color: transparent;
+}
+
+.dropdown{
+    position: relative;
+}
+
+.dropdown button{
+    border: none;
+    background-color: transparent;
+}
+
+.dropdown ul{
+    display: none;
+    flex-direction: column;
+    padding: calc(var(--small-gap) / 2);
+    background-color: var(--theme-white);
+    position: absolute;
+    z-index: 1;
+    translate: 0% var(--small-gap);
+    width: max-content;
+}
+
+.dropdown ul li{
+    width: 100%;
+}
+
+.dropdown ul li:hover span{
+    color: var(--theme-blue);
+}
+
+.dropdown ul li button,
+.dropdown ul li input{
+    border: none;
+    background-color: transparent;
+    width: 100%;
+    text-align: start;
+}
+
+.dropdown ul li input[type="file"]::-webkit-file-upload-button{
+    display: none;
 }
 
 #video-wrapper{
@@ -92,10 +183,11 @@ video{
 }
 
 #controls> div:nth-child(3){
-    width: 100%;
-    display: flex;
-    flex-direction: row;
+    width: calc(100%);
+    display: grid;
+    grid-template-columns: 25% auto 25%;
     justify-content: space-between;
+    align-content: center;
     background-color: var(--theme-grey);
     background-image: linear-gradient(to bottom, var(--theme-grey), var(--tertiary-grey));
     padding: calc(var(--small-gap) / 1) 0;
@@ -106,7 +198,8 @@ video{
     display: grid;
     justify-content: center;
     align-items: center;
-    grid-template-columns: auto auto 2.5% auto auto;
+    grid-template-columns: 16.25% 16.25% 40% 16.25% 16.25%;
+    gap: calc(var(--small-gap) / 2);
 }
 
 #controls div:nth-child(3) ul li{
@@ -128,6 +221,8 @@ video{
 }
 
 #controls div:nth-child(3) ul li:nth-child(3) button{
+    width: 100%;
+    height: 100%;
     border-radius: 50%;
     border: none;
 }
@@ -152,6 +247,29 @@ video{
     border: none;
 }
 
+#controls div:nth-child(3) div:nth-child(3){
+    padding: 0% var(--small-gap);
+    display: flex;
+    align-items: center;
+}
+
+#volume-wrapper{
+    position: relative;
+    width: 100%;
+    height: 50%;
+    clip-path: polygon(0 100%, 100% 100%, 100% 0%, 0% 90%);
+    background-color: var(--secondary-grey);
+}
+
+#volume-slider{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background-color: var(--theme-blue);
+    pointer-events: none;
+    right: 10%;
+}
+
 @media (orientation: landscape) {
     video{
         width: auto;
@@ -161,5 +279,8 @@ video{
         position: relative;
         min-height: 10%;
         background-color: transparent;
+    }
+    #controls div:nth-child(3) ul{
+        grid-template-columns: auto auto 35% auto auto;
     }
 }

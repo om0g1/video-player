@@ -7,9 +7,28 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <section id="menu">
+        <ul>
+            <li class="dropdown">
+                <button class="dropdown-btn" data-menu="file-dropdown">Media</button>
+                <ul id="file-dropdown">
+                    <li class="input-file">
+                        <span>Open file</span>
+                        <input type="file" accept="video/*, Audio/*"i id="open-file">
+                    </li>
+                    <li>
+                        <button id="close-button">Close current file</button>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <button>Audio</button>
+            </li>
+        </ul>
+    </section>
     <section id="video-wrapper">
         <video id="video">
-            <source src="https://res.cloudinary.com/ifeomaimoh/video/upload/v1650352188/production.mp4" type="video/mp4"/>
+            <source src="https://www.w3schools.com/tags/mov_bbb.mp4" type="video/mp4"/>
         </video>
     </section>
     <section id="controls">
@@ -20,13 +39,14 @@
                     <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
                 </svg>
             </button>
-            <p id="time-elapsed">t/t</p>
+            <p id="time-elapsed">00:00 / 00:00</p>
         </div>
         <div>
             <input type="range" name="" id="slider">
         </div>
         <div>
             <div>
+                <button style="opacity: 0; pointer-events: none;"></button>
             </div>
             <ul>
                 <li>
@@ -71,6 +91,9 @@
                 </li>
             </ul>
             <div>
+                <div id="volume-wrapper">
+                    <div id="volume-slider"></div>
+                </div>
             </div>
         </div>
     </section>
