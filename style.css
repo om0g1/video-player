@@ -7,12 +7,17 @@
     --secondary-grey: rgb(93, 93, 93);
     --tertiary-grey: rgb(62, 62, 62);
     --theme-blue: #00a4eb;
+    --theme-red: #a40000;
+    --edge-radius: 0.11rem;
 }
 
+*::before,
+*::after,
 *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    /* transition-duration: 0.3s; */
 }
 
 ul{
@@ -22,6 +27,10 @@ ul{
 button,
 input[type="file"]{
     cursor: pointer;
+}
+
+input[type="range"]{
+    accent-color: var(--theme-blue);
 }
 
 button:hover,
@@ -42,6 +51,52 @@ input[type="file"]:hover{
     position: absolute;
     opacity: 0;
     left: 0;
+}
+
+.popup{
+    background-color: var(--theme-grey);
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    bottom: 0;
+    left: 0;
+    z-index: 100;
+    display: none;
+}
+
+.popup> div:nth-child(1) {
+    width: 100%;
+    background-color: var(--theme-white);
+    display: flex;
+    justify-content: flex-end;
+    max-height: 50px;
+}
+
+.popup> div:nth-child(1) button{
+    background-color: transparent;
+    border: none;
+    padding: calc(var(--small-gap) / 2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    aspect-ratio: 1;
+}
+
+.popup> div:nth-child(1) button:last-of-type:hover{
+    background-color: var(--theme-red);
+}
+
+.popup> div:nth-child(2){
+    padding: var(--small-gap);
+}
+
+.popup h4{
+    color: black;
+}
+
+.popup p{
+    color: var(--tertiary-grey);
 }
 
 html{
@@ -253,21 +308,59 @@ video{
     align-items: center;
 }
 
-#volume-wrapper{
-    position: relative;
-    width: 100%;
-    height: 50%;
-    clip-path: polygon(0 100%, 100% 100%, 100% 0%, 0% 90%);
-    background-color: var(--secondary-grey);
+#controls div:nth-child(3) div:nth-child(3) button{
+    padding: calc(var(--small-gap) / 2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: linear-gradient(to bottom, var(--theme-white), var(--theme-grey));
+    border: none;
+    border-radius: var(--edge-radius);
 }
 
-#volume-slider{
+#right-controls{
+    display: flex;
+    gap: var(--medium-gap);
+}
+
+#right-controls div:nth-child(1){
+    display: flex;
+    gap: var(--medium-gap);
+}
+
+#playback-btn{
+    font-weight: bold;
+}
+
+
+#volume-btn{
+    background-color: transparent;
+    background-image: none !important;
+}
+
+#volumeSlider{
     width: 100%;
     height: 100%;
-    position: absolute;
-    background-color: var(--theme-blue);
-    pointer-events: none;
-    right: 10%;
+}
+
+#volumeSlider::-webkit-slider-runnable-track,
+#volumeSlider::-moz-range-track,
+#volumeSlider::-ms-track
+{
+    background-color: white;
+    clip-path: polygon(0 100%, 100% 100%, 100% 0%, 0% 90%);
+}
+
+#info-popup div:nth-child(2) div{
+    width: 100%;
+    display: grid;
+    grid-template-columns: 20% 75%;
+    justify-content: start;
+    gap: var(--small-gap);
+}
+
+#info-popup div:nth-child(2) div input{
+    width: 100%;
 }
 
 @media (orientation: landscape) {
@@ -281,6 +374,15 @@ video{
         background-color: transparent;
     }
     #controls div:nth-child(3) ul{
-        grid-template-columns: auto auto 35% auto auto;
+        grid-template-columns: 25% 25% 35% 25% 25%;
+    }
+    .popup{
+        min-width: 370px;
+        min-height: fit-content;
+        max-width: fit-content;
+        height: auto;
+        top: 50%;
+        left: 50%;
+        translate: -50% -50%;
     }
 }
